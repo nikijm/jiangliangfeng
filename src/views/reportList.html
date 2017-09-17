@@ -1,0 +1,72 @@
+<style>
+    /*html,body,.outer,.outer>div{height: 100%;}*/
+    .content{height: 100%;background: #f6f6f6;font-size: 12px;}
+    .tips{background: #f6f2ec; border-bottom: 1px solid #dfdfdf; overflow: hidden; padding: .06rem .12rem;}
+    .tips .icon{width: 4.27%;margin-top: 0.02rem;}
+    .tips .text{width: 94.7%; color: #fda023;font-size: .14rem;float: right;line-height: .19rem;}
+
+    .list{background: #fff;}
+    .list .item{display: block; overflow: hidden; padding: .1rem .1rem .1rem 0; border-bottom: 1px solid #e9e9e9; margin-left: .1rem;}
+    .item-left{display: inline-block; width: 55%; height: 0.38rem; position: relative;}
+    .item-left .title{color: #333;font-size: .14rem;width: 2.5rem;}
+    .item-left .name{color: #999; font-size: .12rem;}
+    .item-right{position: relative;float: right;width: 40%;margin-top: .03rem;}
+    .item-right .date{color: #999; font-size: .12rem; float: right; width: 65%; text-align: right;padding-top: 0.07rem;}
+    .item-right .arrow{width: 11%; float: right; margin-top: 0.08rem; opacity: 0.3;}
+    .col-green{color:#00A560}
+
+    .empty-tips{font-size: .16rem; text-align: center; color: #999;height: 100%;background: #fff;}
+    .empty-tips img{width: 1.70rem;padding-bottom: 0.4rem;padding-top: 0.6rem}
+    .empty-tips .p1{color: #666;padding-bottom: 0.16rem;font-size: 0.18rem;}
+</style>
+<div class="content">
+    <div class="list" ng-if="list.length>0">
+        <!--<div class="tips">-->
+            <!--<img src="./image/icon_tip.png" alt="" class="icon">-->
+            <!--<p class="text">此页面可查询已出结果的检验检查报告，其他报告需要到医院指定位置领取</p>-->
+        <!--</div>-->
+        <div ng-repeat="n in list" ng-if="n.reportDate">
+            <a ui-sref="reportdetail({inspecno:'{{n.inspecno}}',cardno:'{{n.cardNo}}'})" class="item" ng-if="n.flag=='COMMON'">
+                <div class="item-left">
+                    <p class="title">{{(n.examName || "&ensp;")}}</p>
+                    <p class="name">{{(n.name || "&ensp;")}}  {{n.reportDate}} </p>
+                </div>
+                <div class="item-right">
+                    <img src="./image/arrow_right.png" alt="" class="arrow">
+                    <div class="date">
+                        <span  class="col-green">报告已出</span>
+                    </div>
+                </div>
+            </a>
+            <a ui-sref="reportofct({pacsPatientId:{{n.pacsPatientId}},pacsAccessionNumber:{{n.pacsAccessionNumber}},hospitalPatientId:'{{n.hospitalPatientId}}',registerTime:'{{n.registerTime}}'})" class="item" ng-if="n.flag=='CT'">
+                <div class="item-left">
+                    <p class="title">{{(n.examName || "&ensp;")}}</p>
+                    <p class="name">{{(n.name || "&ensp;")}}  {{n.reportDate}} </p>
+                </div>
+                <div class="item-right">
+                    <img src="./image/arrow_right.png" alt="" class="arrow">
+                    <div class="date">
+                        <span  class="col-green">报告已出</span>
+                    </div>
+                </div>
+            </a>
+             <a href="{{datas.baseUrl}}/app/v1/nthospital?METHOD=getUltrasonicReports&REQTIME={{datas.REQTIME}}&SIGN={{datas.SIGN}}&TOKEN={{datas.TOKEN}}&PHONE={{datas.PHONE}}&USERTYPE=2&OID={{n.reportId}}" class="item" ng-if="n.flag=='ULTRASONIC'">
+                <div class="item-left">
+                    <p class="title">{{(n.examName || "&ensp;")}}</p>
+                    <p class="name">{{(n.name || "&ensp;")}}  {{n.reportDate}} </p>
+                </div>
+                <div class="item-right">
+                    <img src="./image/arrow_right.png" alt="" class="arrow">
+                    <div class="date">
+                        <span  class="col-green">报告已出</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+    </div>
+    <div ng-if="noResult" class="empty-tips">
+        <img src="./image/report.png" alt="">
+        <p class="p1">暂无已出结果的检查报告</p>
+    </div>
+</div>

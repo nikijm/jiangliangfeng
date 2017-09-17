@@ -1,0 +1,24 @@
+<style>
+    .content{width:100%;padding-left: 0.14rem;box-sizing: border-box}
+     input::-webkit-input-placeholder {color:#ccc;}
+    .tips{font-size: .12rem;color: #999;background: #f6f6f6;line-height: .3rem;padding-left: .14rem;}
+    .patient-band .form-group{height: 0.48rem;border-bottom: 1px solid #e9e9e9;line-height: 0.48rem;}
+    .patient-band span{color: #666;display: block;width: 1rem;vertical-align: top;float: left;font-size: .14rem;}
+    .patient-band input[type='text']{border:0;outline: none;vertical-align: top;display: block;height: inherit;float: left;width: 2.5rem;font-size: .14rem;}
+    .patient-band a{width:3.35rem;margin:0.4rem 0 0 0.08rem;line-height: 0.45rem;text-align: center;color: #fff;font-size: 0.18rem;border-radius: 0.04rem;background: #d4d4d4;border:0;display: block }
+    a.active{background: #00a560;}
+</style>
+<p class="tips">绑定成功后，可查询住院信息并线上缴费</p>
+<div class="content">
+    <div class="patient-band">
+        <div class="form-group">
+            <span>就诊人姓名：</span>
+            <input type="text" ng-model="name" required>
+        </div>
+        <div class="form-group">
+            <span>住院号：</span>
+            <input type="text" maxlength="30" ng-model="inpatientid" required>
+        </div>
+        <a href="javascript:;" ng-click="search()" ng-class="{'active':(name && inpatientid && bindEnd)}">绑&ensp;定</a>
+    </div>
+</div>

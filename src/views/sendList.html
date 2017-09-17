@@ -1,0 +1,35 @@
+<style>
+    body{background-color: #F2F2F2}
+    .out-box{font-size: 12px;width: 100%;min-height: 100%;background-color: #F2F2F2;}
+    .send-box{padding: 0 .12rem;background-color: #fff;}
+    .send-list{padding: .14rem 0}
+    .send-list p:first-child{position: relative}
+    .send-list .report-name{display: inline-block;width: 2.5rem;overflow: hidden;word-wrap: normal;white-space: nowrap;text-overflow: ellipsis;font-size: .14rem;color: #333;}
+    .send-list .send-status{position: absolute;right: 0;font-size: .14rem;color: #00A560}
+    .send-list p:last-child{margin-top: .1rem;font-size: .12rem;color: #999}
+
+    /*空页面*/
+    .blank-box{overflow: hidden;text-align: center;display: none}
+    .blank-box img{width: 1.8rem;height: 1.85rem;margin-top: .45rem;}
+    .blank-box p:nth-of-type(1){font-size: .18rem;color: #666;margin-top: .4rem;}
+    .blank-box p:last-child{font-size: .14rem;color: #666;margin-top: .16rem;}
+</style>
+<div class="out-box">
+    <div class="send-box">
+        <div class="send-list" ng-repeat="item in listDatas" ng-click="toDetails(item)">
+            <p><span class="report-name">{{item.reportName}}</span>
+            <span class="send-status" ng-if="item.status == 0">待取件</span>
+            <span class="send-status" ng-if="item.status == 1">待快递揽件</span>
+            <span class="send-status" ng-if="item.status == 2">配送中</span>
+            <span class="send-status" ng-if="item.status == 3">取货成功</span>
+            <span class="send-status" ng-if="item.status == 4">取货失败</span>
+            </p>
+            <p>共{{item.reportCnt}}份报告</p>
+        </div>
+    </div>
+    <div class="blank-box">
+        <img src="./image/blank@2x.png">
+        <p>暂无寄送记录</p>
+        <p>温馨提示：可在报告查询页面中申请寄送报告</p>
+    </div>
+</div>

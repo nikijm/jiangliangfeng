@@ -1,0 +1,28 @@
+<style>
+    .out-box{width: 100%;font-size: 12px;}
+    .search-input{width: calc(100% - .24rem);margin-left: .12rem;height: .4rem;background-color: #F2F2F2;border-radius: 100px;
+            margin-top: .12rem;}
+    .search-input img{width: .14rem;vertical-align: middle;display: inline-block;}
+    .search-input input{height: .4rem;border: none;background-color: transparent;font-size: .14rem;vertical-align: middle;
+        width: calc(100% - .72rem)}
+    ::-webkit-search-cancel-button { -webkit-appearance: none; }
+    ::-webkit-input-placeholder {color: #999999;}
+    .search-input img:first-child{margin-left: 12px;margin-right: 6px;color: #999999;}
+    .search-input img:last-child{display: none;}
+    .doc-box{padding: .1rem}
+    input:-webkit-autofill{-webkit-box-shadow: 0 0 0 1000px #F2F2F2 inset !important;}
+
+    #loadingFail{width: 100%;text-align: center}
+    #loadingFail img{width: 60%; margin-top: .6rem; margin-bottom: .4rem;}
+    #loadingFail p{font-size: .12rem;color: #999999}
+</style>
+<div class="out-box">
+    <form action="#" class="search-input" onsubmit="return false;" id="searchForm">
+        <img src="./image/icon_search@2x.png" alt="search">
+        <input autocomplete="off" type="search" placeholder="搜索医生、擅长疾病、科室" id="searchBox" ng-model="searchCode" ng-keyup="change($event)">
+        <img src="./image/search_icon_delet@2x.png" alt="delete" id="delete" ng-click="delete()">
+    </form>
+    <div class="doc-box">
+
+    </div>
+</div>

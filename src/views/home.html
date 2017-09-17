@@ -1,0 +1,148 @@
+<style>
+    body{background: #f2f2f2;}
+    .banner{font-size: 0;position: relative;margin-bottom: .1rem;height: 1.2rem;}
+    .banner .swiper-container{width: 100%}
+    .banner img{width: 100%}
+    /*主要四个功能*/
+    .menu-box{overflow: hidden;background: #fff;}
+    .menu-box .menu-item{float: left;width: 50%;text-align: center;color: #666;font-size: .14rem;padding:.14rem 0;position: relative;border-bottom: 1px solid #e9e9e9;box-sizing: border-box}
+    .menu-box .menu-item:nth-child(odd){border-right: 1px solid #e9e9e9}
+    .menu-box .menu-item .red-num{right: .39rem; top: .06rem;}
+    .menu-box .menu-item .icon{width: .36rem;height: .36rem;border-radius: .36rem;vertical-align: middle;margin-right: .1rem}
+    .menu-box .menu-item .menu-name{display: inline-block;height: 100%;vertical-align: middle}
+    /*中间4个服务*/
+    .other-box{font-size: 12px;overflow: hidden;width: 100%;height: .7rem;background-color: #fff;box-shadow: 0 1px 2px 0 rgba(0,0,0,.1)}
+    .other-box>a{float: left;width: 25%;text-align: center;overflow: hidden;font-size: 0;height: 100%;position: relative;}
+    .other-box .icon{width: .2rem;margin-top: .16rem;margin-bottom: .1rem}
+    .other-box .other-name{font-size: .12rem;color: #999;margin: 0;padding: 0}
+    .other-box .red-num{top: .1rem;right: .2rem}
+
+
+    .appointment-box{font-size: .18rem;background: #fff;display: block;height: .48rem;line-height: .45rem;border-bottom: 1px solid #dfdfdf;margin-bottom: .1rem;padding: 0 .1rem;}
+    .appointment-box .icon{vertical-align: middle;width: .22rem;height: .22rem;}
+    .appointment-box .text{color: #00A560;vertical-align: middle;margin-left: .03rem;display: inline-block;}
+    .appointment-box .right{float: right;line-height: .48rem;position: relative;}
+    .appointment-box .right .red-num{right: .15rem; top: .14rem;}
+    .appointment-box .arrow{width: .16rem; opacity: .4;}
+
+    .ad-box{overflow: hidden;background: #fff;padding: .1rem 0;}
+    .ad-box .item{display: block;width: 3.51rem;height: .78rem;margin:0 auto;}
+    .ad-box .item>img{width: 100%;height: 100%;vertical-align: top;}
+    .menu-item sub{position: absolute;left:55%;top:0.06rem;font-size:0.1rem;display: inline-block;width: 0.16rem;height:0.16rem;border-radius: 50%;background: red;color:#fff;text-align: center;vertical-align: middle;line-height: 0.16rem; }
+
+    .bot-nav-blank{height: .49rem;background: #fff;}
+    /*底部导航*/
+    .bot-nav-box{border-top: 1px solid #e9e9e9; position: fixed; width: 100%; left: 0; bottom: 0; background: #fff; max-width: 750px; right: 0; margin: auto;}
+    .bot-nav-box .item{float: left;width: 50%;height: .49rem;
+        text-align: center;font-size: 0;color: #999;position: relative;overflow: hidden}
+    .bot-nav-box .item .icon{width: .29rem; height: .25rem; background-size: 100% 100%; display: inline-block;margin-top: .06rem }
+    .bot-nav-box .item .service{background-image: url('./image/home_icon_service_gray@2x.png')}
+    .bot-nav-box .item .clinic{background-image: url('./image/home_icon_online_gray@2x.png')}
+    /*.bot-nav-box .item.active{background: #00A560;color: #fff;}*/
+    .bot-nav-box .item p{margin: 0;padding: 0;font-size: .12rem;color: #999}
+    .bot-nav-box .item.active p{color: #00A560}
+    .bot-nav-box .item.active .service{background-image: url('./image/icon_zhenliao_ Selected .png')}
+    .bot-nav-box .item.active .clinic{background-image: url('./image/home_icon_Selected.png')}
+    .bot-nav-box .item span{vertical-align: middle; margin-left: .01rem;}
+
+    .red-num{position: absolute; text-align: center;background: #f8362d; border: 1px solid; color: #ffffff; font-size: .12rem;
+        display: inline-block;width: .18rem;border-radius: 50%;line-height: .18rem;}
+    .bot-nav-box .red-num{top:.17rem;margin-left: .05rem;}
+</style>
+<div class="content">
+    <div class="banner">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <!--<div class="swiper-slide">-->
+                    <!--<a href="https://health.10086.cn/questionnaire/record2.html?hospitalId=41&hospitalName=成都华西四院&channelCode=thirdpart_hospital_41">-->
+                        <!--<img src="./image/banner_manyi.png">-->
+                    <!--</a>-->
+                <!--</div>-->
+                <!--<div class="swiper-slide"><a href="#!/hosintroduce/"><img src="./image/home_banner_yiyuan@2x.png"></a></div>-->
+                <!--<div class="swiper-slide"><a href="#!/registerdeptlist/deptintroduce"><img src="./image/home_banner_keshi@2x.jpg"></a></div>-->
+                <!--<div class="swiper-slide"><a href="http://news.leley.com//20170803/201708035810815.html"><img src="./image/alipay.png"></a></div>-->
+                <div class="swiper-slide" ng-repeat="n in bannerList"><a href="{{n.reprintUrl}}"><img ng-src="{{n.titlePic}}"></a></div>
+            </div>
+        </div>
+    </div>
+    <div class="menu-box">
+        <a href="javascript:;" data-href="registerdeptlist/registerdoclist" class="menu-item"
+           ng-click="checkLogin($event);leleyStatistics({type:'icon','opt':'quickReg','tag':'1'})">
+            <img src="./image/icon_guahao@2x.png" alt="" class="icon">
+            <span class="menu-name">快速挂号</span>
+        </a>
+        <a href="javascript:;" data-href="paylist/1" class="menu-item"
+           ng-click="checkLogin($event);leleyStatistics({type:'icon','opt':'outpatientPay','tag':'1'})">
+            <img src="./image/icon_menzhen@2x.png" alt="" class="icon">
+            <span class="menu-name">门诊缴费</span>
+            <i class="red-num" ng-if="payCount > 0">{{payCount}}</i>
+        </a>
+        <a href="javascript:;" data-href="reportlist" class="menu-item"
+           ng-click="checkLogin($event);leleyStatistics({type:'icon','opt':'reportQuery','tag':'1'})">
+            <img src="./image/icon_baogao@2x.png" alt="" class="icon">
+            <span class="menu-name">报告查询</span>
+            <sub ng-if="redDotNum>0">{{redDotNum}}</sub>
+        </a>
+        <a href="javascript:;" data-href="patientidcardlist/my" class="menu-item"
+           ng-click="checkLogin($event);leleyStatistics({type:'icon','opt':'medicalCard','tag':'1'})">
+            <img src="./image/icon_jiuzhenka@2x.png" alt="" class="icon">
+            <span class="menu-name">办卡绑卡</span>
+        </a>
+        <!--<a href="javascript:;" data-href="hospitalizedlist" class="menu-item"-->
+           <!--ng-click="checkLogin($event);leleyStatistics({type:'icon','opt':'hosptalizationPay','tag':'1'})">-->
+            <!--<img src="./image/icon_zhuyaun@2x.png" alt="" class="icon">-->
+            <!--<p class="menu-name">住院缴费</p>-->
+        <!--</a>-->
+
+
+        <!--<a href="javascript:;" ng-click="goToGuide($event);" data-href="http://news.leley.com//20170609/201706090053476.html" class="menu-item">-->
+            <!--<img src="./image/icon_gongnue@2x.png" alt="" class="icon">-->
+            <!--<p class="menu-name">就医攻略</p>-->
+        <!--</a>-->
+    </div>
+    <div class="other-box">
+        <a class="menu-item" href="javascript:;" data-href="hospitalizedlist" ng-click="checkLogin($event);leleyStatistics({type:'icon','opt':'hosptalizationPay','tag':'1'})">
+            <img src="./image/icon_zhuyuan.png" class="icon">
+            <p class="other-name">住院缴费</p>
+        </a>
+        <a href="leley://appointmentlist" ng-click="leleyStatistics({type:'icon','opt':'mySubscribe','tag':'1'})">
+            <img src="./image/icon_guahao.png" class="icon">
+            <p class="other-name">挂号记录</p>
+            <i class="red-num" ng-if="appointCount>0">{{appointCount}}</i>
+        </a>
+        <a href="#!/sendlist">
+            <img src="./image/icon_jilu.png" class="icon">
+            <p class="other-name">寄送记录</p>
+        </a>
+        <a class="menu-item" href="javascript:;" ng-click="goToGuide($event);" data-href="http://news.leley.com//20170609/201706090053476.html">
+            <img src="./image/icon_rules.png" class="icon">
+            <p class="other-name">就诊攻略</p>
+        </a>
+    </div>
+    <!--<a href="leley://appointmentlist" class="appointment-box" ng-click="leleyStatistics({type:'icon','opt':'mySubscribe','tag':'1'})">-->
+        <!--<img src="./image/home_icon_yuyue@2x.png" alt="" class="icon">-->
+        <!--<span class="text">我的预约</span>-->
+        <!--<span class="right">-->
+            <!--<i class="red-num" ng-if="appointCount > 0">{{appointCount}}</i>-->
+            <!--<img src="./image/arrow_right.png" alt="" class="arrow">-->
+        <!--</span>-->
+    <!--</a>-->
+    <!--<div class="ad-box">-->
+        <!--<a data-href="#!/onlineclinic" class="item" ng-click="goToClinic($event)">-->
+            <!--<img src="./image/home_online_banner@2x.png" alt="">-->
+        <!--</a>-->
+    <!--</div>-->
+    <!--<div class="bot-nav-blank"></div>-->
+    <div class="bot-nav-box">
+        <a href="javascript:;" class="item active">
+            <i class="icon service"></i>
+            <p>诊疗服务</p>
+            <i class="red-num" ng-if="clinicCount > 0">{{clinicCount}}</i>
+        </a>
+        <a data-href="#!/onlineclinic" class="item" ng-click="goToClinic($event);leleyStatistics({type:'icon','opt':'onlineMenzhen','tag':'1'})">
+            <i class="icon clinic"></i>
+            <p>在线门诊</p>
+            <i class="red-num" ng-if="clinicNum > 0">{{clinicNum}}</i>
+        </a>
+    </div>
+</div>

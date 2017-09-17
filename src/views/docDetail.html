@@ -1,0 +1,148 @@
+<style>
+    .content{background: #f6f6f6}
+    .doc-card-box{background: #00A560;box-sizing: border-box;padding:.15rem .12rem .12rem;position: relative;margin-bottom: .1rem;}
+    .doc-card-box:after{content: ''; position: absolute; height: .88rem; background: #fefefe; width: 100%; bottom: 0; left: 0;}
+    .doc-card{background: #fff; border-radius: .04rem; font-size: .14rem; box-sizing: border-box; padding: .16rem .12rem .11rem;
+        height: 100%; width: 100%; position: relative; z-index: 2; box-shadow: 0 3px 10px #ccc;}
+    .info .avatar-box{width: .68rem;height: .68rem;position: relative;float: left;margin-right: .1rem;}
+    .info .avatar-box .avatar{width: 100%;height: 100%;border-radius: 50%;}
+    .info .avatar-box .status{background: #febf69; position: absolute; left: 0; bottom: -.04rem; color: #fff;
+        font-size: .12rem; right: 0; margin: auto; width: .3rem; text-align: center; border-radius: .1rem; padding: 0 .02rem;}
+    .info .avatar-box .status.online{background: #6bd1a1;}
+    .info .head .name{font-size: .18rem;color: #333;margin-right: .02rem;}
+    .info .head .title{font-size: .14rem;color: #666;}
+    .info .tips{font-size: .14rem;color: #999;height: .19rem;overflow: hidden;}
+    .info .tag{font-size: .12rem;color: #fff;margin-top: .04rem;height: .16rem;}
+    .info .tag>span{border-radius: 0.1rem; padding: .01rem .06rem; margin-right: .07rem;}
+    .info .tag .top{background: #febf69;}
+    .info .tag .time{background: #6bd1a1;}
+    .doc-card .data{overflow: hidden; width: 100%; margin-top: 0.26rem;}
+    .data .data-item{text-align: center;float: left;width: 33.33%;}
+    .data .data-item .num{font-size: .18rem;color: #666;}
+    .data .data-item .text{font-size: .12rem;color: #999;}
+
+    .service-box{background: #fff;font-size: .16rem;margin-bottom: .1rem;border-bottom:1px solid #e9e9e9}
+    .service-item{height: .63rem;line-height: .63rem;margin-left: .12rem;position: relative;display: block;}
+    .service-item+.service-item{border-top:1px solid #e9e9e9;}
+    .service-item>img{width: .36rem;height: .36rem;vertical-align: middle;}
+    .service-item .left{display: inline-block; line-height: 0.23rem; vertical-align: middle; margin-left: .05rem;}
+    .service-item .title{font-size: .16rem;color: #333;}
+    .service-item .tips{font-size: .12rem;color: #999;}
+    .service-item .tips.orange{color: #f6a623}
+    .service-item .price{position: absolute;right: .12rem;top:0;font-size: .12rem;color: #f7b64a}
+    .service-item .price span{font-size: .16rem;}
+
+    .doc-desc-box{margin-bottom: .1rem;background: #fff;}
+    .doc-desc-box .package{border-bottom:1px solid #e9e9e9;margin-left: .12rem;padding-right: .12rem;font-size: 0;}
+    .doc-desc-box .package .title{color: #999;font-size: .12rem;padding-top: .13rem;}
+    .doc-desc-box .package .text{color: #666; font-size: .14rem; margin: .05rem 0 .13rem; }
+    .doc-desc-box .package .abstract{height: .6rem; overflow: hidden;}
+    .doc-desc-box .package .abstract.active{height: auto;}
+    .doc-desc-box .package .abstract.active+.abstract-ico img{transform: rotate(180deg);}
+    .abstract-ico{display: block;width: 100%;padding: .05rem 0;margin-top: -.05rem;text-align: center;}
+    .abstract-ico>img{width: .16rem;height: .16rem;opacity: .4;}
+
+    .comment-box{background: #fff;}
+    .comment-title{height: .4rem;line-height: .4rem;font-size: .13rem;color: #999;margin: 0 .12rem;}
+    .comment-title>span{}
+    .comment-title>a{float: right;}
+    .comment-title>a .text{color: #999;}
+    .comment-title>a>img{opacity: .4; width: .16rem; vertical-align: sub;}
+    .comment-empty{font-size: .14rem; text-align: center; color: #999; margin-top: .2rem;}
+    .comment-item{border-top:1px solid #e1e1e1;margin-left: .12rem;position: relative;padding: .12rem 0;}
+    .comment-item .star-box{font-size: 0;margin: 0 0 .1rem;}
+    .comment-item .star-box img{width: .12rem;height: .11rem;margin-right: .05rem;}
+    .comment-item .text{color: #333;font-size: .14rem;}
+    .comment-item .right-info{position: absolute;right: 0;top:0;font-size: .12rem;color: #999;margin: .12rem;}
+    .comment-item .right-info .name{}
+    .comment-item .right-info .time{}
+</style>
+<div class="content">
+    <div class="doc-card-box">
+        <div class="doc-card">
+            <div class="info">
+                <div class="avatar-box">
+                    <img ng-src={{modal.fullPhoto}} onerror='javascript:this.src="./image/head_default@2x.png"' alt="" class="avatar">
+                    <span ng-if="modal.statusStr == '在线'" class="status online">{{modal.statusStr}}</span>
+                    <span ng-if="modal.statusStr != '在线'" class="status">{{modal.statusStr}}</span>
+                </div>
+                <p class="head">
+                    <span class="name">{{modal.name}}</span>
+                    <span class="title">{{modal.title}}</span>
+                </p>
+                <p class="tips">{{modal.servicedesc}}</p>
+                <p class="tag">
+                    <span class="top" ng-if="modal.doctortag">顶级专家</span>
+                    <span class="time" ng-if="modal.averagetag && modal.drespond">平均{{modal.drespond}}</span>
+                </p>
+            </div>
+            <div class="data">
+                <div class="data-item">
+                    <p class="num">{{modal.servicecount || '-'}}</p>
+                    <p class="text">咨询</p>
+                </div>
+                <div class="data-item">
+                    <p class="num">{{modal.comment && modal.comment.percent || '-'}}%</p>
+                    <p class="text">好评</p>
+                </div>
+                <div class="data-item">
+                    <p class="num">{{modal.score || '-'}}</p>
+                    <p class="text">评分</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="service-box" ng-if="modal.services.length">
+        <div ng-click="jumpUrl($event)" data-type="{{one.code}}" data-href="{{(one.code=='register'&&'leley://doctorregister?doctorId='+ modal.rid +'&hospitalId='+modal.hospitalid)
+        || (one.code=='onlineclinic'&&'leley://orderenable?rid='+one.rid)}}" class="service-item" ng-repeat="one in modal.services">
+            <img ng-if="one.code=='register'" src="./image/icon_service_guahao@2x.png" alt="">
+            <img ng-if="one.code=='onlineclinic'" src="./image/icon_service_menzhen@2x.png" alt="">
+            <div class="left">
+                <p class="title">{{one.name}}</p>
+                <p class="tips {{one.status=='1'&&'orange'}}">{{one.description}}</p>
+            </div>
+            <p ng-if="one.code=='onlineclinic'" class="price">
+                <span>{{one.price}}</span> {{one.unit}}
+            </p>
+        </div>
+    </div>
+    <div class="doc-desc-box">
+        <div class="package">
+            <div class="title">医院科室</div>
+            <div class="text">{{modal.hospital}}&ensp;{{modal.dept}}</div>
+        </div>
+        <div class="package">
+            <div class="title">擅长</div>
+            <div class="text">{{modal.goodat || '暂无'}}</div>
+        </div>
+        <div class="package">
+            <div class="title">简介</div>
+            <div class="text abstract">{{modal.info || '暂无'}}</div>
+            <a href="javascript:;" class="abstract-ico">
+                <img src="./image/arrow_down.png" alt="" class="">
+            </a>
+        </div>
+    </div>
+    <div class="comment-box">
+        <div class="comment-title">
+            <span>服务评价</span>
+            <a ng-click="jumpUrl($event)" class="more-comment" data-href="leley://allevaluation?star={{modal.comment.score}}&evaluation={{modal.comment.percent}}&doctorid={{modal.rid}}">
+                <span class="text">{{modal.comment && modal.comment.commentnum || '0'}}人评价</span>
+                <img src="./image/arrow_right.png" alt="">
+            </a>
+        </div>
+        <p class="comment-empty" ng-if="!modal.comment.comments.length">暂无评价</p>
+        <div class="comment-item" ng-repeat="one in modal.comment.comments">
+            <div class="star-box">
+                <span ng-repeat="starIndex in [1,2,3,4,5]">
+                    <img src="./image/star{{(starIndex <= one.score)?'':'_gray'}}@2x.png" alt="">
+                </span>
+            </div>
+            <p class="text">{{one.content}}</p>
+            <div class="right-info">
+                <span class="name">{{one.patient}}</span>
+                <span class="time">{{one.date}}</span>
+            </div>
+        </div>
+    </div>
+</div>

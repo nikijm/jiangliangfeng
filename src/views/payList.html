@@ -1,0 +1,75 @@
+<style>
+    .out-box{font-size: 12px;width: 100%;height: auto}
+    .header{padding:.12rem 0 ;border-bottom: 1px solid rgba(1,1,1,.05);position: relative;overflow: hidden;color: #727272;}
+    .header div{float: left;text-align: center;font-size: .16rem;width: calc(50% - 1px);}
+    .left{border-right: 1px solid #b6b6b6;}
+    .header div span{padding-bottom: .09rem;}
+    .active{border-bottom: 3px solid #00A560}
+    .pay-box{width: 100%;position: relative;font-size: 0}
+    .pay-box a{display: inline-block;height: auto;margin-left:.1rem;width:calc(100% - .1rem);border-bottom: 1px solid rgba(1,1,1,.05);position: relative}
+    .info p{padding-right: .1rem}
+    .info .top{color: #333333;font-size: .14rem;margin-top: .1rem;margin-bottom: .2rem}
+    .info .item{color: #999999;font-size: .12rem;margin: .1rem 0}
+    .info .total{color: #999999;font-size: .12rem}
+    .info .total{text-align: right;margin-top: .2rem;border-top: 1px solid #e2e2e2;padding: .1rem}
+    .total span{font-size: .16rem;color: #F5A623}
+    .top span,.item span{display:inline-block;width: 33.3%}
+    .top span:nth-of-type(2),.item span:nth-of-type(2){text-align: center}
+    .top span:last-child,.item span:last-child{text-align: right;}
+    .no-pay a div:last-child{position: absolute;right: .1rem;font-size: .14rem;color: #f6a623;line-height: .6rem}
+
+    .no-pay a{height: .6rem}
+    .no-pay a div{float: left}
+    .no-pay .info p:first-child{font-size: .14rem;color: #333333;padding-top: .1rem}
+    .no-pay .info p:last-child{font-size: .14rem;color: #999999}
+    .box-header{height: .4rem;font-size: .12rem;line-height: .4rem;padding-left: .1rem;background-color: #f2f2f2;color: #999}
+
+    .empty-tips{font-size: .16rem; text-align: center; color: #999;}
+    .empty-tips img{width: 1.70rem;padding-bottom: 0.4rem;padding-top: 0.6rem}
+    .empty-tips .p1{color: #666;padding-bottom: 0.16rem;font-size: 0.18rem;}
+
+</style>
+<div class="out-box">
+    <div class="header">
+        <div class="left" ng-click="getRecipeList($event)">
+            <span class="active">未缴费</span>
+        </div>
+        <div class="right" ng-click="getRecipePaidList($event)">
+            <span>已缴费</span>
+        </div>
+    </div>
+    <div ng-if="activeIndex === 0">
+        <div ng-if="recipeList.length >0" class="pay-box no-pay">
+            <a ng-repeat="n in recipeList" href="javascript:;" ng-click="checkDetail(n);">
+                <div class="info">
+                    <p>{{ n.patitentname }}</p>
+                    <p>订单日期：{{ n.recipedate }}</p>
+                </div>
+                <div>{{ n.recipeamount }} 元</div>
+            </a>
+        </div>
+        <div ng-if="recipeList && recipeList.length == 0" class="empty-tips">
+            <img src="./image/pay.png" alt="">
+            <p class="p1">暂无缴费记录</p>
+        </div>
+    </div>
+    <div ng-if="activeIndex === 1">
+        <div ng-if="recipeList.length > 0" class="box-header">以下是近3个月的已缴费项目</div>
+        <div ng-if="recipeList.length > 0" class="pay-box">
+            <div ng-repeat="n in recipeList">
+                <a>
+                    <div class="info">
+                        <p class="top"><span>{{n.patitentname}}</span><span>{{n.cardno}}</span><span>{{n.item[0].operdatetime}}</span></p>
+                        <p class="item" ng-repeat="item in n.item"><span>{{item.itemname}}</span><span>{{item.num}}</span><span>¥{{item.cost}}元</span></p>
+                        <p class="total">合计：<span>¥{{n.total}}元</span></p>
+                    </div>
+                </a>
+                <div style="width: 100%;height: .1rem;background-color: #f2f2f2"></div>
+            </div>
+        </div>
+        <div ng-if="recipeList && recipeList.length == 0" class="empty-tips">
+            <img src="./image/pay.png" alt="">
+            <p class="p1"> 暂无缴费记录 </p>
+        </div>
+    </div>
+</div>

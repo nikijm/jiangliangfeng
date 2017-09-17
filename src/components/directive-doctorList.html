@@ -1,0 +1,60 @@
+<!--医生列表指令-->
+<div>
+    <style>
+        .directive-doc-item{overflow: hidden;padding-top: 10px;cursor: pointer;list-style: none;font-size: 12px}
+        .directive-doc-item>a{text-decoration: none;color: #000}
+        .directive-doc-head{position: relative;float: left;margin-right: .16rem;margin-top: .05rem;}
+        .directive-doc-head>img{width: .6rem;height: .6rem;border-radius: 50%;}
+        .directive-doc-head>div{position: absolute; text-align: center; bottom: -.065rem; width: .3rem;height:.18rem;min-height:16px;min-width:32px;background-color: #ffaf77;border-radius: .09rem;
+            margin-left: -.16rem;  left: 50%; color: #fff;font-size: .12rem;padding:0 .01rem;}
+        .directive-doc-head>div span{position: absolute;width: 100%;height: 100%;line-height: .18rem;text-align: center;left: 0;top: 0}
+        .directive-doc-head>.online{background-color: #6bd1a1;}
+        .directive-doc-info{margin-left: .7rem}
+        .directive-doc-info ul{margin:0;padding-bottom: 10px;border-bottom: 1px solid #e4e4e4}
+        .directive-doc-info ul li{line-height: .24rem;}
+        .directive-doc-info ul li span{font-size: .12rem;color: #999;vertical-align: middle;}
+        .directive-doc-info .doc-username{ font-size: .16rem;max-width: 26%; color: #333 !important; overflow: hidden; display: inline-block; height: .23rem; }
+        .directive-doc-info .doc-title{color: #666;margin-left: .03rem;}
+        .directive-doc-info .doc-hos-info>span{color: #666;}
+        .directive-doc-info button{border: none;outline: none}
+        .directive-doc-info .doc-tips1{color: #fff; font-size: .12rem; background-color: #ffca7c; border-radius: 3px; line-height: 1; padding: .03rem .04rem;}
+        .directive-doc-info .doc-tips2{color: #fff; font-size: .12rem; background-color: #7bd7b1; border-radius: 3px; line-height: 1; padding: .03rem .04rem;}
+        .directive-doc-info .doc-goodAt{width: 90%;overflow: hidden;white-space: nowrap;text-overflow: ellipsis}
+        .empty-tips{font-size: .16rem; text-align: center; color: #999; margin-top: 0.5rem;}
+    </style>
+    <ul ng-if="list.length > 0">
+        <li class="directive-doc-item" ng-repeat="doc in list">
+            <a href='#!/docdetail/{{doc.rid}}'>
+                <div class="directive-doc-head">
+                    <img ng-src={{doc.photo}} onerror='javascript:this.src="./image/head_default@2x.png"' alt='医生头像' class='head-img'>
+                    <div class="online" ng-show="doc.onlinestate == 1 ">
+                        <span>在线</span>
+                    </div>
+                    <div ng-show="doc.onlinestate == 0 ">
+                        <span>忙碌</span>
+                    </div>
+                </div>
+                <div class="directive-doc-info">
+                    <ul>
+                        <li>
+                            <span class="doc-username">{{doc.name}}</span>
+                            <span class="doc-title">{{doc.title}}</span>
+                            &ensp;<button class="doc-tips1" ng-show="doc.doctortag">顶级专家</button>
+                            &ensp;<button class="doc-tips2" ng-show="doc.averagetag">回复快</button>
+                        </li>
+                        <li class="doc-hos-info">
+                            <span>{{doc.hospital}}</span>
+                            &emsp;
+                            <span>{{doc.dept}}</span>
+                        </li>
+                        <li class="doc-goodAt">
+                            <span>擅长：</span>
+                            <span>{{doc.goodat}}</span>
+                        </li>
+                    </ul>
+                </div>
+            </a>
+        </li>
+    </ul>
+    <p ng-if="list.length == 0" class="empty-tips">暂无内容！</p>
+</div>

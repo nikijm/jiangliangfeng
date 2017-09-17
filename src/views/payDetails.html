@@ -1,0 +1,73 @@
+<style>
+    html,body{height: 100%}
+    .out-box{font-size: 12px;width: 100%;}
+    .info-pay{width: 100%;position: relative;border-bottom: 1px solid rgba(1,1,1,.1)}
+    .info-pay .header{width: calc(100% - .1rem);position: relative;height: .4rem;line-height: .4rem;margin-left: .1rem;border-bottom: 1px solid rgba(1,1,1,.1)}
+    .info-pay .tips{margin-left: .1rem; color: #888; margin-top: .1rem;}
+    .header span:first-child{color: #666666;font-size: .14rem;}
+    .header span:last-child{color: #999999;font-size: .12rem;position: absolute;right: .1rem}
+    .info{margin-left: .1rem;width: calc(100% - .1rem);height: .48rem;line-height: .48rem;}
+    .info span:first-child{color: #333333;font-size: .16rem;}
+    .info span:last-child{color: #333333;font-size: .16rem;position: absolute;right: .1rem}
+    .separate{width: 100%;height: .1rem;background-color: #f2f2f2 }
+    .details{width: 100%; margin-left: .1rem; margin-top: .16rem; border-bottom: 1px solid #e6e6e6; padding-bottom: .2rem;}
+    .details thead th{font-size: .12rem; color: #999999; font-weight: normal;}
+    .details tbody tr{text-align: center;color: #666666;font-size: .14rem}
+    .details tbody tr td{padding-top: .16rem}
+    .details tbody tr td:first-child{width: 50%}
+    .btn-group{position: fixed;bottom: 0;width: 100%;max-width:750px;height: .46rem;background-color: #fff;font-size: 12px}
+    .btn-group>span{float: left;width: 50%;text-align: center;height: 100%;line-height: .46rem}
+    .btn-group .price{font-size: .14rem;color: #666666;border-top: 1px solid rgba(1,1,1,.1);}
+    .btn-group .price span{font-size: .18rem;color: #f6a623}
+    .btn-group .pay{font-size: .18rem;color: #ffffff;background-color: #00A560;position: absolute;right: 0}
+
+</style>
+<div class="out-box">
+    <div class="info-pay">
+        <div class="header">
+            <span>缴费信息</span>
+            <span>{{detail.recipedate}}</span>
+        </div>
+        <div class="info">
+            <span>{{detail.patitentname}}</span>
+            <span>{{detail.cardno}}</span>
+        </div>
+    </div>
+    <div class="separate"></div>
+    <div class="info-pay" ng-if="(detail.execlocation)">
+        <div class="header">
+            <span>导诊信息</span>
+            <span></span>
+        </div>
+        <div class="info">
+            <span>{{detail.execlocation}}</span>
+            <span></span>
+        </div>
+    </div>
+    <div class="separate"></div>
+    <div class="info-pay" style="border-bottom: none;padding-bottom: .2rem">
+        <div class="header">
+            <span>项目明细</span>
+            <span></span>
+        </div>
+        <table class="details">
+            <thead>
+            <th>名称</th>
+            <th>数量</th>
+            <th>价格</th>
+            </thead>
+            <tbody>
+            <tr ng-repeat="n in detail.item">
+                <td>{{n.itemname}}</td>
+                <td>{{n.num+n.unit}}</td>
+                <td>{{n.cost}}元</td>
+            </tr>
+            </tbody>
+        </table>
+        <p class="tips">缴费订单仅在本日有效，请尽快支付</p>
+    </div>
+</div>
+<div class="btn-group">
+    <span class="price">合计：<span>{{detail.recipeamount}}元</span></span>
+    <span class="pay" ng-click="createOrder()">立即支付</span>
+</div>

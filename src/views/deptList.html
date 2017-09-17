@@ -1,0 +1,19 @@
+<style>
+    .content{background: #fff;font-size: .16rem;height: 100%;position: fixed;width: 100%;max-width: 750px;opacity: 0;visibility: hidden;transition: all .2s ease;}
+    .content.show{opacity: 1;visibility:visible;}
+    .content>div{float: left; height: 100%; overflow-x: hidden; overflow-y: auto;}
+    .left-box{width: 40%}
+    .left-box a{display:block;height: .4rem;text-align: center;color: #666666;width: 100%;border-right: 1px solid rgba(1,1,1,.1);
+        line-height: .4rem;border-bottom: 1px solid rgba(1,1,1,.1);background-color: rgba(1,1,1,.03)}
+    .left-box a.active{background: #fff;border-right-color: transparent;}
+    .right-box{width: 56%;position: absolute;right: 0}
+    .right-box a{display: block;width: 100%;height: .4rem;line-height: .4rem;color: #666666;border-bottom: 1px solid rgba(1,1,1,.1)}
+</style>
+<div class="content dept-list-box">
+    <div class="left-box">
+        <a href="javascript:;" ng-repeat="n in deptList" child="{{n.children}}" data-rid="{{n.rid}}" ng-class="{'active':($index==parentIndex)}" onclick="angular.element(this).scope().selectDept(event.target)">{{n.name}}</a>
+    </div>
+    <div class="right-box">
+        <a ng-repeat="n in deptChildrenList" data-id="{{n.rid}}" href="#!/{{jumpUrl}}/{{parentId}}/{{n.rid}}/{{n.name}}" >{{n.name}}</a>
+    </div>
+</div>

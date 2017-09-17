@@ -1,0 +1,60 @@
+<style>
+    html,body,.outer,.outer>div,.content{height: 100%;}
+    .content{background: #f6f6f6;font-size: 12px;}
+    .top-box{padding: 0.135rem .14rem;}
+    .top-left {display: inline-block;}
+    .top-left .name{color: #333;margin-right: 8px;font-size: .16rem;}
+    .top-left .sex{color: #666;font-size: .14rem;margin-right: 8px;}
+    .top-left .age{color: #666;font-size: .14rem;margin-right: 10px;}
+    .top-left .status{color: #999;font-size: .14rem;}
+    .top-left .status.active{color: #fda023;}
+    .top-right{float: right; color: #00a560; font-size: .14rem; margin-top: .01rem;}
+
+    .detail-info{background: #fff;overflow: hidden;}
+    .detail-inner{border-bottom: 1px dashed #e9e9e9; padding: .18rem 0;
+        margin: 0 .14rem; line-height: .24rem; color: #333; font-size: .14rem; overflow: hidden;}
+    .detail-info label{color: #999;}
+    .info-left{float: left;width: 55%;}
+    .info-right{float:right;width: 45%;}
+
+    .money-inner{padding: .18rem 0;margin: 0 .14rem;line-height: .24rem;
+        color: #333;font-size: .14rem;overflow: hidden;}
+    .surplus-money{color: #fda023;}
+    .deposit-btn{display: block;color: #fff;margin: .4rem auto 0;text-align: center;font-size: .18rem;
+        background: #00a560;line-height: .44rem;border-radius: 4px;width: 3.35rem;}
+</style>
+<div class="content">
+    <div class="top-box">
+        <div class="top-left">
+            <span class="name"><i ng-bind="zypatdetail.name"></i></span>
+            <span class="sex"><i ng-bind="zypatdetail.sex"></i></span>
+            <span class="age"><i ng-bind="zypatdetail.age"></i></span>
+            <span ng-if="zypatdetail.isinpatient == 1" class="status active">在院</span>
+            <span ng-if="zypatdetail.isinpatient == 0" class="status">离院</span>
+        </div>
+        <a href="#!/hospitalizedorder/{{zypatdetail.inpatientid}}/{{zypatdetail.zydate}}" class="top-right">住院清单 ></a>
+    </div>
+    <div class="detail-info">
+        <div class="detail-inner">
+            <div class="info-left">
+                <p><label>医生姓名：</label><i ng-bind="zypatdetail.doctname"></i></p>
+                <p><label>住院号：</label><i ng-bind="zypatdetail.inpatientid"></i></p>
+                <p><label>当前科室：</label><i ng-bind="zypatdetail.depname"></i></p>
+            </div>
+            <div class="info-right">
+                <p><label>入院日期：</label><i ng-bind="zypatdetail.zydate"></i></p>
+                <p><label>床号：</label><i ng-bind="zypatdetail.bedno"></i></p>
+            </div>
+        </div>
+        <div class="money-inner">
+            <div class="info-left">
+                <p><label>预交金总额：</label><i>{{zypatdetail.yjj || 0}}元</i></p>
+                <p><label>预交金余额：</label><i class="surplus-money">{{zypatdetail.ye || 0}}元</i></p>
+            </div>
+            <div class="info-right">
+                <p><label>费用总计：</label><i>{{zypatdetail.zfy || 0}}元</i></p>
+            </div>
+        </div>
+    </div>
+    <a ng-click="leleyStatistics({type:'button','opt':'advanceChargePay','tag':'6'})" ng-if="zypatdetail.isinpatient == 1" href="#!/hospitalizedprepaid/{{zypatdetail}}" class="deposit-btn">预交金缴存</a>
+</div>

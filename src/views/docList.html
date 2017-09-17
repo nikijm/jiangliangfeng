@@ -1,0 +1,31 @@
+<style>
+    .out-box{font-size: 12px;width: 100%;height: auto}
+    .header{padding:.12rem 0 ;border-bottom: 1px solid rgba(1,1,1,.05);overflow: hidden;color: #727272;
+        position: fixed;width: 100%;background-color: white;z-index: 13;top:0;max-width: 750px;}
+    .top-download-box .inner>i{display: block;}
+    .top-download-box.show+div .header{top:.59rem;}
+    .top-download-box.show+div .select-box{top:1.02rem;}
+    .header div{float: left;text-align: center;font-size: .14rem;width: calc(50% - 1px);}
+    .header img{width: .14rem; vertical-align: middle; margin-left: .05rem; opacity: 0.6;}
+    .left{border-right: 1px solid #b6b6b6}
+    .select-box{position:fixed;background-color: #ffffff;display: none;z-index: 12;width:100%;height: 100%;background-color: rgba(1,1,1,.05);top: .43rem}
+    .select-box div{font-size: .14rem;padding: .1rem 0 .1rem .3rem;color: #666;background-color: white;width: 100%;position: relative}
+    .select-box div:first-child:after{content: '';position: absolute;bottom: 0;width: 100%;left: .3rem;border-bottom: 1px solid rgba(1,1,1,.05);}
+    .doc-box{height: auto;position: relative;padding-left: .1rem;margin-top: .44rem}
+    .hide{overflow: hidden}
+</style>
+<div class="out-box" id="moreDoc">
+    <div class="header">
+        <div class="left" ui-sref="registerdeptlist({jumpUrl:'doclist'})">
+            <span>科室选择</span> <img src="./image/arrow_down.png" alt="down">
+        </div>
+        <div class="right" ng-click="sortSelect()">
+            <span>智能排序</span> <img src="./image/arrow_down.png" alt="down">
+        </div>
+    </div>
+    <div class="select-box" ng-click="closeSort()">
+        <div ng-click="$event.stopPropagation();sortType($event)" data-sorttype="grade" >智能排序</div>
+        <div ng-click="$event.stopPropagation();sortType($event)" data-sorttype="averagetime" >响应速度排序</div>
+    </div>
+    <div class="doc-box"></div>
+</div>

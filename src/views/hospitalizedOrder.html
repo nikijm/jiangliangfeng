@@ -1,0 +1,40 @@
+<style>
+    body{background-color: #f6f6f6}
+    .out-box{font-size: 12px;width: 100%;height: 100%;}
+    table{width: 100%;border-spacing: 0;background-color: white}
+    table thead tr{height: .36rem;color: #999999;font-size: .12rem;}
+    table thead tr td{padding-left: .12rem}
+    tbody tr td{padding: .1rem 0 .1rem .12rem}
+    thead tr td:first-child,tbody tr:not(.title) td:first-child{width: .9rem;}
+    thead tr td:nth-of-type(2),tbody tr:not(.title) td:nth-of-type(2){width: 1.22rem;text-align: center}
+    thead tr td:nth-of-type(3),tbody tr:not(.title) td:nth-of-type(3){width: .6rem;text-align: center}
+    thead tr td:last-child,tbody tr:not(.title) td:last-child{padding-right: .12rem;text-align: right}
+    .title{height: .28rem;background-color: rgba(1,1,1,.03);color: #999999;font-size: 12px}
+    .title td{padding-left: .12rem}
+    tbody tr:not(.title) td{border-top: 1px solid rgba(1,1,1,.2);color: #666666;line-height: 16px;font-size: 12px}
+    .empty-tips{font-size: .16rem; text-align: center; color: #999; margin-top: 0.4rem;}
+</style>
+<div class="out-box">
+    <table ng-if="zypatdetail.length > 0">
+        <thead>
+        <tr>
+            <td>费用发生时间</td>
+            <td>项目名称</td>
+            <td>数量单位</td>
+            <td>价格</td>
+        </tr>
+        </thead>
+        <tbody ng-repeat="n in zypatdetail">
+        <tr class="title">
+            <td colspan="4">{{n.itemtype}}</td>
+        </tr>
+        <tr>
+            <td>{{n.usetime}}</td>
+            <td>{{n.itemname}}</td>
+            <td>{{n.num+n.unit}}</td>
+            <td>{{n.price}}</td>
+        </tr>
+        </tbody>
+    </table>
+    <p ng-if="zypatdetail.length == 0" class="empty-tips">暂无记录！</p>
+</div>

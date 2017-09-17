@@ -1,0 +1,54 @@
+<style>
+    body{background: #f2f2f2;}
+    .out-box{font-size: 12px;width: 100%;height: auto}
+    .address-list{width: 100%;padding-top: 0.1rem;}
+    .address-item{width: 3.51rem;padding:0 0.1rem;box-sizing:border-box;margin:0 auto 0.1rem;box-shadow: 0 0.01rem 0.04rem 0 rgba(0,0,0,0.1);background: #fff;border-radius: 0.04rem;}
+    .address-item .base-info{height: 0.4rem;line-height: 0.4rem;}
+    .address-item .address-detail{min-height: 0.42rem; box-sizing: border-box; vertical-align: middle; margin-bottom: .1rem;}
+    .address-item .address-mod{height: .4rem;line-height: 0.4rem;border-top:2px solid rgba(220,220,220,0.2)}
+    .address-item .base-info .name{font-size: 0.16rem;color:#333;margin-right: 0.1rem;}
+    .address-item .base-info .phone{font-size: 0.14rem;color:#999}
+    .address-item .base-info .id-card{float: right;color:#999;font-size: 0.12rem;}
+    .address-item .address-detail{font-size: 0.14rem;color:#666}
+    .address-item .address-mod a{color: #666;font-size: 0.14rem;}
+    .address-item .address-mod span{float: right;}
+    .address-item .address-mod img{width: 0.16rem;height: 0.16rem;vertical-align: middle;margin-top: -0.02rem;}
+    .address-item .address-mod .active{color:#00A560}
+    .address-item .address-mod .edit-address{margin-right:0.25rem;}
+    .btn-address-add{width: 3.51rem;height: 0.44rem;line-height: 0.44rem;margin: 0 auto;background: #00A560;text-align: center;color:#fff;display: block;border-radius: 0.04rem;font-size: 0.18rem;}
+    .layui-m-layer0 .layui-m-layerchild{width: 2.7rem;height: 1.32rem;max-width:none;}
+    .layui-m-layercont{padding: 0;font-size: 0.18rem;color:#333333;height: 0.25rem;margin-top: 0.38rem}
+    .layui-m-layerchild {font-size: 0.18rem;color:#333;padding: 0;height: 0.5rem;line-height: 0.5rem;}
+    .layui-m-layerchild {border-radius: 0.1rem !important;}
+    .layui-m-layerbtn{border-radius: 0 0 0.1rem 0.1rem;height: 0.47rem;line-height: 0.47rem;position: absolute;bottom: 0;left:0;background: #FFFFFF;border-top:#E9E9E9 solid 0.01rem;}
+    .layui-m-layerbtn span[no] {border-right: 0.01rem solid #E9E9E9}
+    .layui-m-layerbtn span:nth-child(1) {font-size:0.18rem;color: #333333  !important;}
+    .layui-m-layerbtn span:nth-child(2) {font-size:0.18rem;color: #00A560 !important;}
+</style>
+<div class="out-box">
+    <ul class="address-list">
+        <li class="address-item" ng-repeat='item in datas'>
+            <p class="base-info" >
+                <span class="name" ng-if="item.name.length == 2">{{item.name[0] + "*"}}</span>
+                <span class="name" ng-if="item.name.length >= 3">{{item.name[0] + "**"}}</span>
+                <span class="phone">{{item.phone}}</span>
+                <span class="id-card" ng-if="item.idNo.length == 18 ">{{item.idNo[0] + item.idNo[1] +item.idNo[3] +"************" + item.idNo[15] + item.idNo[16] +item.idNo[17]}}</span>
+                <span class="id-card" ng-if="item.idNo.length == 15 ">{{item.idNo[0] + item.idNo[1] +item.idNo[3] +"*********" + item.idNo[12] + item.idNo[13] +item.idNo[14]}}</span>
+            </p>
+            <p class="address-detail">
+                {{item.province}}{{item.city}}{{item.area}}{{item.detail}}
+            </p>
+            <p class="address-mod">
+                <a id='setStyle' class="active " ng-if='item.isDefault === 1' href="javascript:;" ng-click="setDefault(item)"><img id="defaultImg" src="../image/chosen@2x.png" /> 默认地址</a>
+                 <a id='setStyle' ng-if='!item.isDefault || item.isDefault===0' href="javascript:;" ng-click="setDefault(item)"><img id="defaultImg" src="../image/unchosed@2x.png" /> 默认地址</a>
+                <span>
+                   <a href="javascript:;"  ng-click="toProducer(item)" class="edit-address"><img src="../image/edit%20@2x.png" /> 编辑</a>
+                   <a href="javascript:;" ng-click="deleteAddress(item)" ><img src="../image/delete@2x.png" /> 删除</a>
+                </span>
+            </p>
+        </li>
+    </ul>
+    <a href="javascript:;" ui-sref="addressadd"  class="btn-address-add">
+        新增地址
+    </a>
+</div>

@@ -1,0 +1,69 @@
+<style>
+    html,body,.outer,.outer>div{height: 100%;}
+    .content{background: #f6f6f6;font-size: 0;min-height: 100%;}
+
+    .user-info{margin-bottom: .1rem;background: #fff;padding: .14rem .12rem;}
+    .user-info .top-info{margin-bottom: .1rem;}
+    .user-info .top-info .name{font-size: .16rem;color: #333;line-height: .16rem;margin-right: .1rem;}
+    .user-info .top-info .phone{font-size: .14rem;line-height: .14rem;color: #999;}
+    .user-info .top-info .passport{font-size: .12rem;line-height: .17rem;color: #999;float: right;}
+    .user-info .bot-info{}
+    .user-info .bot-info .address{font-size: .14rem;color: #666;}
+
+    .timeline-box{background: #fff;padding: 0 .12rem;}
+    .package-title{font-size: .12rem;color: #999;line-height: .40rem;border-bottom: 1px dashed #E8E8E8}
+    .express-status{background: #f6f6f6;border-radius: .04rem;padding: .14rem .1rem;margin-bottom: .2rem;margin-top: .14rem}
+    .express-ico{width: .36rem;height: .36rem;margin-right: .12rem;}
+    .express-order{display: inline-block;width: 2.7rem;}
+    .express-name{font-size: .14rem;line-height: .14rem;color: #333;margin-bottom: .1rem;}
+    .express-number{font-size: .12rem;line-height: .12rem;color: #999;}
+
+    .timeline-list{padding-bottom: .14rem;margin-left: .04rem;}
+    .timeline-item{padding-left: .3rem;border-left:1px dashed #e9e9e9;position: relative;padding-bottom: .3rem;}
+    .timeline-item:nth-last-of-type(1){border-left:none;padding-bottom: 0;}
+    .timeline-item:nth-of-type(1):before{border-color:#00A560;}
+    .timeline-item:before{content: ''; position: absolute; width: .08rem; height: .08rem;
+        left: -.05rem; top: 0; border: 1px solid #ccc; border-radius: 50%; background: #fff;}
+    .timeline-item .date{font-size: .12rem;line-height: .12rem;color: #999;}
+    .timeline-item .text{font-size: .14rem;line-height: .18rem;color: #666;margin-top: .08rem;}
+</style>
+<div class="content">
+    <div class="user-info">
+        <p class="top-info">
+            <span class="name">赵**</span>
+            <span class="phone">18144321356</span>
+            <span class="passport">513************041</span>
+        </p>
+        <p class="bot-info">
+            <span class="address">四川省成都市武侯区人民南路中段17号</span>
+        </p>
+    </div>
+    <div class="timeline-box">
+        <p class="package-title">物流信息</p>
+        <div class="express-status">
+            <img src="../image/wuliu.png" alt="" class="express-ico">
+            <div class="express-order">
+                <p class="express-name">顺丰速递&ensp;已发货</p>
+                <p class="express-number">运单编号：602490850724</p>
+            </div>
+        </div>
+        <div class="timeline-list">
+            <div class="timeline-item">
+                <p class="date">2017-03-18 14:16</p>
+                <p class="text">快件到达【眉山市彭山县李密大道营业点】</p>
+            </div>
+            <div class="timeline-item">
+                <p class="date">2017-03-18 14:16</p>
+                <p class="text">快件到达【眉山市彭山县李密大道营业点】</p>
+            </div>
+            <div class="timeline-item">
+                <p class="date">2017-03-18 14:16</p>
+                <p class="text">快件到达【眉山市彭山县李密大道营业点】</p>
+            </div>
+            <div class="timeline-item">
+                <p class="date">2017-03-18 14:16</p>
+                <p class="text">快件到达【眉山市彭山县李密大道营业点】</p>
+            </div>
+        </div>
+    </div>
+</div>

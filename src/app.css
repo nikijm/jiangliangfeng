@@ -1,0 +1,63 @@
+html{font-size: 100px;font-family: 'Microsoft YaHei','宋体',sans-serif;}
+body,p{margin: 0;}
+a{text-decoration: none;}
+input{padding: 0;margin: 0;}
+input:focus{outline: none;}
+ul{width: 100%;padding: 0;margin: 0;}
+li{list-style: none;}
+i{font-style:normal;}
+h1,h2,h3,h4,h5,h6{font-weight: normal;margin: 0;}
+
+.outer{width: 100%;max-width: 750px;margin: 0 auto;opacity: .5;transition: opacity .3s;visibility: hidden}
+.outer.show{opacity: 1;visibility: visible;}
+
+.top-download-box{height: .59rem;text-align: center;overflow: hidden;display: none;background: #f6f6f6;}
+.top-download-box.show{display: block}
+.top-download-box .inner{position: fixed;top:0;left:0;width: 100%;height: .49rem;z-index: 998;max-width: 750px;right: 0;margin: auto;}
+.top-download-box .inner>a{display: block;line-height: .48rem;color: #00A560;font-size: .16rem;background: #fff;border-bottom: 1px solid #dfdfdf;}
+.top-download-box .inner>i{display: none;height: .1rem;background: #f6f6f6;}
+
+.layui-m-layershade{background-color: rgba(0,0,0,.4);}
+.layui-m-layer2 .layui-m-layerchild .layui-m-layercont>i{display: none !important;}
+.layui-m-layer2 .layui-m-layerchild{background: #fff; width: 1.29rem;box-sizing: border-box;text-align: center;
+    padding: .16rem;border-radius: 4px;color: #666;font-size: .16rem;}
+.layui-m-layer2 .layui-m-layercont{background-image: url(./image/loading_icon_logo@2x.png);display: inline-block;
+    width: .42rem; height: .42rem; background-size: cover;margin-bottom: .25rem;animation:move .5s steps(6) infinite;
+    animation-timing-function : step-start;
+}
+@keyframes move {
+    0%{
+        background-position : 0;
+    }
+    16.66%{
+        background-position : -.42rem;
+    }
+    33.33%{
+        background-position : -.84rem;
+    }
+    50%{
+        background-position : -1.26rem;
+    }
+    66.66%{
+        background-position : -1.68rem;
+    }
+    83.33%{
+        background-position : -2.1rem;
+    }
+}
+.layui-m-layer2 .layui-m-layercont p{position: absolute; margin-top: 0.65rem; margin-left: -.05rem;}
+
+.my-alert.layui-m-layerchild{width: 2.7rem !important;border-radius: .1rem;}
+.my-alert.layui-m-layerchild h3{font-size: .18rem;color: #666;padding: .2rem .33rem .1rem;height: auto !important;line-height: .26rem !important;}
+.my-alert.layui-m-layerchild h3+.layui-m-layercont{padding-top: 0 !important;}
+.my-alert.layui-m-layerchild .layui-m-layercont{padding: .2rem .33rem !important;color: #333 !important;font-size: .18rem !important;line-height: .24rem !important;}
+.my-alert.layui-m-layerchild .layui-m-layerbtn{border-top:1px solid #e9e9e9 !important;height: .5rem;line-height: .5rem;border-radius: 0 0 .1rem .1rem;}
+.my-alert.layui-m-layerchild .layui-m-layerbtn span{width: 50%;}
+.my-alert.layui-m-layerchild .layui-m-layerbtn span[no]{color: #666 !important;font-size: .18rem !important;background: #fff !important;border-right: 1px solid #e9e9e9 !important;}
+.my-alert.layui-m-layerchild .layui-m-layerbtn span[yes]{color: #00A560 !important;font-size: .18rem !important;background: #fff !important;}
+
+.weui-progress{position:fixed;top:0;width:100%;z-index:999;max-width:750px;left:0;right:0;margin:auto;opacity: 1;transition: all .1s ease;}
+.weui-progress.disabled{opacity:0;visibility:hidden}
+.weui-progress__inner-bar{height: 100%;transition:all .35s ease-out;background-color:#00A560 !important;width: 0;}
+.weui-progress__inner-bar.active{width: 95%;}
+.weui-progress__bar{background-color: #EBEBEB; height: 3px; position:relative}

@@ -1,0 +1,67 @@
+<style>
+    .content{width: 100%;font-size: 14px;}
+    .content .card-type-box{font-size: 0.14rem;}
+    .card-type-box p{padding:.19rem 0 .17rem .15rem;color:#666;}
+    .card-type-box span{color:#00A560}
+    .card-type-box .card-type{width: 2.68rem;margin:0 auto .15rem;}
+    .card-type a{width: 1.26rem;height: 0.28rem;display: inline-block;box-sizing: border-box;vertical-align: middle;
+        text-align: center;line-height: 0.28rem;border-radius: 0.02rem;border:1px solid #00A560;}
+    .card-type a:first-child{background: #00A560;color: #fff;margin-right: .1rem}
+    .card-type a:last-child{color:#00A560}
+    .band-card-list{width: 100%; background: #f2f2f2; padding: 0.1rem 0;}
+    .band-card-list .band-card-item{position: relative;background: #fff;color:#666;width: 3.51rem;min-height: 1.25rem;border:1px solid #dfdfdf;margin: 0 auto 0.1rem;border-radius: 0.04rem;padding-left: 0.12rem;box-sizing: border-box;font-size: 0.14rem}
+    .band-card-item .card-num{padding: 0.14rem 0; border-bottom: 1px dashed #ddd;color: #666;}
+    .band-card-item .band-name{color:#333;font-size: 0.18rem;padding-top: 0.22rem;}
+    .band-card-item .band-name span{font-size: 0.12rem;color:#999;padding-left: 0.05rem;}
+    .band-card-item .address{margin-top: 0.08rem;vertical-align: top;padding-bottom: 0.22rem;}
+    .band-card-item .address span{display: inline-block;}
+    .band-card-item .address span:first-child{vertical-align: top;}
+    .band-card-item .address span:last-child{width: 2.1rem;}
+    .band-card-item .choice{display: block;width: 0.48rem;height: 0.24rem;background: #00a560;border-radius: 0.02rem;color: #fff;font-size: 0.12rem;position: absolute;right:0.13rem;top:0.72rem;text-align: center;line-height: 0.24rem;}
+
+    /*空就诊人*/
+    html,body{height: 100%;width: 100%;}
+    .out-box{width: 100%;height: 100%}
+    .out-box .card-num{padding-top:.2rem;color:#666;font-size: .14rem;padding-left: 0.22rem}
+    .out-box .card-num span{color:#00A560}
+    .out-box .content{margin-top: .3rem;}
+    .content h2{color:#999;font-size: 0.14rem;text-align: center;padding:0 0.1rem;position: relative;width: 0.75rem;margin: 0 auto 0.2rem}
+    .content h2:before{content: "";width: 1.22rem;height: 1px;border-top:1px solid #f3f3f3;position: absolute;right:-1.22rem;top:50%}
+    .content h2:after{content: "";width: 1.22rem;height: 1px;border-top:1px solid #f3f3f3;position: absolute;left:-1.22rem;top:50%}
+    .content .link{display: block;text-align: center;margin-bottom: 0.3rem}
+    .content img{margin-bottom: 0.12rem;width: 1.1rem;}
+    .content .link p{font-size: 0.14rem;color:#666}
+
+</style>
+<div class="content" ng-if="patientIdList && patientIdList.length > 0">
+    <div class="card-type-box">
+        <p>您还可以新建/绑定<span>{{(5-patientIdList.length < 0 ? 0 : (5-patientIdList.length))}}</span>张电子就诊卡</p>
+        <div class="card-type" ng-if="patientIdList.length < 5">
+            <a ng-click="leleyStatistics({type:'button','opt':'addMedicalCard','tag':'8'})" href="#!/patientidcardcreate/{{type}}/">办电子就诊卡</a>
+            <a ng-click="leleyStatistics({type:'button','opt':'bindMedicalCard','tag':'8'})" href="#!/patientidcardbind/{{type}}">绑定已有就诊卡</a>
+        </div>
+    </div>
+    <div class="band-card-list">
+        <div class="band-card-item" ng-repeat="n in patientIdList">
+            <p class="card-num">卡号：{{n.cardno}}</p>
+            <p class="band-name">{{n.patientname}} <span>(就诊人)</span></p>
+            <p class="address">医院：{{n.hospitalname}}</p>
+            <a class='choice' ng-if="flag" href="leley://confirmregister?patientname={{n.patientname}}&rowid={{n.rowid}}&cardno={{n.cardno}}">选择</a>
+        </div>
+
+    </div>
+</div>
+<div class="out-box" ng-if="patientIdList && patientIdList.length == 0">
+    <p class="card-num">您还可以新建/绑定<span>5</span>张电子就诊卡</p>
+    <div class="content">
+        <h2>您可以选择</h2>
+        <a ng-click="leleyStatistics({type:'button','opt':'addMedicalCard','tag':'8'})" href="#!/patientidcardcreate/{{type}}/" class="link">
+            <img src="./image/icon_card_banli.png" alt="">
+            <p>办电子就诊卡</p>
+        </a>
+        <a ng-click="leleyStatistics({type:'button','opt':'bindMedicalCard','tag':'8'})" href="#!/patientidcardbind/{{type}}" class="link">
+            <img src="./image/icon_card_bangding.png"  alt="">
+            <p>绑定已有就诊卡</p>
+        </a>
+    </div>
+</div>

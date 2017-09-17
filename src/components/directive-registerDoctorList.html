@@ -1,0 +1,63 @@
+<!--医生列表指令-->
+<div>
+    <style>
+        .directive-doc-item{overflow: hidden;padding-top: 10px;cursor: pointer;list-style: none;font-size: .12rem}
+        .directive-doc-item>a{text-decoration: none;color: #000}
+        .directive-doc-head{position: relative;float: left;margin-right: 16px;}
+        .directive-doc-head>img{width: .6rem;height: .6rem;border-radius: 50%;}
+        .directive-doc-head>div{position: absolute; text-align: center; bottom: -.05rem; width: 50%;
+            border-radius: .09rem; margin-left: -.15rem; background-color: #6bd1a1; left: 50%; color: #fff; height: .18rem; font-size: .12rem; padding: 0 3px;}
+        .directive-doc-info{margin-left: .7rem}
+        .directive-doc-info ul{margin:0;padding-bottom: .1rem;border-bottom: 1px solid #e4e4e4}
+        .directive-doc-info ul li{padding-right: .1rem;list-style: none;height: .2rem;line-height: .24rem}
+        .directive-doc-info ul li span{font-size: .12rem;color: #999}
+        .directive-doc-info .doc-username{margin-right: .05rem; font-size: .16rem;
+            max-width: 26%; color: #333 !important; overflow: hidden; display: inline-block; height: .21rem;}
+        .directive-doc-info .doc-title,.doc-hos-info>span{color: #666;}
+        .directive-doc-info .doc-tips1{color:#fff;font-size: .12rem;background-color: #ffca7c;
+            border-radius: 3px;padding: 1px 4px}
+        .directive-doc-info .doc-tips2{color:#fff;font-size: .12rem;background-color: #7bd7b1;
+            border-radius: 3px;padding: 1px 4px}
+        .directive-doc-info .doc-goodAt{width: 90%;overflow: hidden;white-space: nowrap;text-overflow: ellipsis}
+        .directive-doc-info .price{position: relative;}
+        .directive-doc-info .price span:first-child{color: #00A560;font-size: .12rem}
+        .directive-doc-info .price span:last-child{color: #fda023;font-size: .16rem;position: absolute;right: .1rem}
+        .register{position: absolute;right: .15rem;padding: .03rem .1rem;
+            background-color: #00A560;color: white!important;border-radius: 3px}
+        .empty-tips{font-size: .16rem; text-align: center; color: #999; margin-top: 0.4rem;}
+    </style>
+    <ul ng-if="list.length > 0">
+        <li class="directive-doc-item" ng-repeat="doc in list" ng-click="registerBtnMapping($event)">
+            <div>
+                <div class="directive-doc-head">
+                    <img ng-src={{doc.fullPhotoUrl}} onerror='javascript:this.src="./image/head_default@2x.png"' alt='医生头像' class='head-img'>
+                </div>
+                <div class="directive-doc-info">
+                    <ul>
+                        <li>
+                            <span class="doc-username">{{doc.doctname}}</span>
+                            <span class="doc-title">{{doc.rankname}}</span>
+                            <a class="register list" ng-show="doc.regremained>0 && !doc.date" data-type="regOnExpert" data-href="leley://doctorregister?doctorId={{doc.doctorid}}&hospitalId={{doc.hospitalId}}">挂号</a>
+                            <a class="register confirm" ng-show="doc.regremained>0 && doc.date" data-type="regOnData" data-href="leley://confirmregisterfromnet?entity={{doc.allEncode}}">挂号</a>
+                            <a class="register full" ng-if="doc.regremained<=0" data-href="javascript:;" style="background-color: rgba(1,1,1,.3)" >约满</a>
+                        </li>
+                        <li class="doc-hos-info">
+                            <span>四川大学华西第四医院</span>
+                            &emsp;
+                            <span>{{doc.depname}}</span>
+                        </li>
+                        <li class="doc-goodAt">
+                            <span>擅长：</span>
+                            <span>{{doc.specialty}}</span>
+                        </li>
+                        <li class="price" ng-if="doc.date">
+                            <span>{{doc.timeregion}}</span>
+                            <span>¥ {{doc.regfee}}</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </li>
+    </ul>
+    <p ng-if="list.length == 0" class="empty-tips">暂无内容！</p>
+</div>

@@ -1,0 +1,72 @@
+<style>
+    .clear-both{clear: both;}
+    .pull-right{float: right}
+    .content{height: auto;min-height:100%;background: #f6f6f6;font-size: 14px;border-top:1px solid transparent;position: relative;top:-1px;}
+    .paper-box{margin: .3rem .15rem;background: #fff;box-shadow: -1px -1px 4px #e9e9e9,1px 0 4px #e9e9e9;
+        border-top:2px solid #00A560;padding: .1rem .1rem 0;position: relative;}
+
+    .paper-box .title{color: #00A560;font-size: .16rem;font-weight: normal;text-align: center;margin: .12rem 0 .08rem;}
+    .paper-box .sub-title{font-size: .12rem;color: #999;text-align: center;margin-bottom:.08rem;}
+    /*.half-circle{position: absolute;background: #f6f6f6;width: .15rem;height: .15rem;top: 74%;  border-radius: 50%;}*/
+    /*.half-circle.left{left: -.08rem;box-shadow: -1px -1px 1px #ccc inset,1px 1px 1px #ccc inset;}*/
+    /*.half-circle.right{right: -.08rem;box-shadow: -1px -1px 1px #ccc inset,1px 1px 1px #ccc inset;}*/
+    .info{overflow: hidden;border-bottom: 1px dashed #ddd;padding-bottom: .2rem;}
+    .info-left{float: left;width: 50%;}
+    .info-right{float: right;width: 50%;}
+    .info .item{color: #333;font-size: .14rem;margin:.06rem 0;}
+    .info .item label{color: #999;}
+    .info-bottom{font-size: 0;}
+    .info-bottom .item{display: inline-block;word-break: break-word;min-width: 50%;}
+    .report-detail,.no-desc{margin-top: 0.2rem;padding-bottom: 0.15rem;}
+    .report-detail p{color: #333;padding-bottom: 0.05rem;}
+    .report-detail p label{color:#999;}
+    .report-detail p.description{color:#666;margin-top: 0.05rem;}
+    .report-detail p.description label{color: #999}
+    .border-bottom{background: url(./image/report_border-icon.png); width: 100%;
+        height: 0.06rem; display: block; bottom: 0; position: absolute; left: 0; background-size: .15rem;}
+    .bot-content{padding: .1rem .1rem .35rem; font-size: .12rem; color: #999; border-top: 1px dashed #ddd; background: #fafafa; margin: 0 -.1rem;line-height: .2rem;}
+</style>
+<div class="content">
+
+    <div class="paper-box">
+        <h4 class="title">{{detail.title}}</h4>
+        <h6 class="sub-title">{{item.address[0]}} <br> {{item.address[1]}}</h6>
+        <div class="info">
+            <div class="info-left">
+                <div class="item"><label>姓名：</label>{{item.Name}}</div>
+                <div class="item"><label>年龄：</label>{{item.Age  | limitTo :2}}</div>
+            </div>
+            <div class="info-right">
+                <div class="item"><label>性别：</label>{{ (item.Sex && item.Sex=='M') ? '男': '女'}}</div>
+                <div class="item"><label>检验号：</label>{{item.Accession_number}}</div>
+                <!--<div class="item"><label>就诊科室：</label></div>-->
+            </div>
+            <div class="clear-both"></div>
+            <div class="info-bottom">
+                <div class="item"><label>检验日期：</label>{{detail.Register_time || registerTime}}</div>
+            </div>
+        </div>
+        <div class="report-detail"  ng-if="item.Behavior && item.Diagnosis">
+            <p>
+                <label>检查名称：</label>{{item.ExamName}}
+            </p>
+            <p><label>检查方法：</label>{{item.ExamMethod}}</p>
+            <p class="description">
+                <label>影像表现：</label><br/>
+               {{item.Behavior}}
+                <br/><label>诊断意见：</label>
+                <br/>{{item.Diagnosis}}
+
+            </p>
+
+        </div>
+
+        <div class="bot-content">
+            <p><span>报告医师：{{item.ReportDoc}}</span><span class="pull-right">审核医师：{{item.VerifyDoc}}</span></p>
+            <p>审核时间：{{item.VerifyDate}}</p>
+            <p>实验{{detail.reportStatement}}</p>
+        </div>
+
+        <span class="border-bottom"></span>
+    </div>
+</div>

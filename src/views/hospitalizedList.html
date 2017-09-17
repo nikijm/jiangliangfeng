@@ -1,0 +1,79 @@
+<style>
+    html,body,.outer,.outer>div,.content{height: 100%;}
+    .content{background: #f6f6f6;font-size: 12px;}
+    .add-visit-card{color: #00a560; line-height: .48rem;border-bottom:1px solid #eaeaea;background: #fff;
+        font-size: .16rem; display: block; text-align: center;}
+    .add-visit-card i{font-style: normal; transform: scale(1.5,1.5); display: inline-block; margin-right: 5px;position: relative;top:-0.02rem;}
+    .hospitalized-list{overflow: hidden;background: #fff;}
+    .list-btn-group{line-height: .48rem;text-align: center;}
+    .list-btn-group:after{content:'';padding-bottom: .1rem;display: block;background: #f6f6f6;}
+    .list-btn-group .button{margin: 0 .05rem;width: 1.26rem;line-height: .28rem;font-size: .14rem;border:1px solid #00A560;display: inline-block;border-radius: 2px;}
+    .list-btn-group .button img{width: .16rem;margin-right: .05rem;vertical-align: middle;}
+    .list-btn-group .button span{vertical-align: middle;}
+    .list-btn-group .add-card{color: #fff;background: #00A560}
+    .list-btn-group .search-detail{color: #00A560;}
+    .hospitalized-item{height: .6rem;border-bottom:1px solid #eaeaea;display: block;margin-left: .13rem;}
+    .hospitalized-item .item-left{float: left;margin-top: .13rem;}
+    .item-left .name>span{color: #333;font-size: .14rem;}
+    .item-left .name .status{color: #999;font-size: .14rem;}
+    .item-left .name .status.active{color: #fda023;}
+    .item-left .dept{font-size: .12rem;color: #999;margin-top: .03rem;}
+    .hospitalized-item .item-right{float: right;text-align: right; margin-right: 3.5%;}
+    .item-right .time{color: #727272; font-size: .12rem; vertical-align: middle; display: inline-block; line-height: 0.6rem;}
+    .item-right img{width: 16%;vertical-align: middle;opacity: .3;}
+    .empty-tips{font-size: .16rem; text-align: center; color: #999;background: #fff;height: 100%;}
+    .empty-tips>img{width: 1.96rem; padding-bottom: .4rem; padding-top: .6rem;}
+    .empty-tips .p1{color: #666;padding-bottom: 0.12rem;font-size: .2rem;}
+    .empty-tips .p2{color:#999;font-size: .16rem;}
+    .empty-tips .button{width: 3.15rem;margin:.2rem auto 0;line-height: .44rem;font-size: .18rem;border:1px solid #00A560;display: block;border-radius: 4px;}
+    .empty-tips .button img{width: .18rem;margin-right: .1rem;}
+    .empty-tips .add-card{color: #fff;background: #00A560}
+    .empty-tips .search-detail{color: #00A560;}
+</style>
+<div class="content">
+    <div class="hospitalized-list" ng-if="hospitalizedlist.length > 0">
+        <div class="list-btn-group">
+            <!--<a href="#!/patientidcardlist/my" class="button add-card" ng-click="leleyStatistics({type:'icon','opt':'medicalCard','tag':'1'})">-->
+                <!--<img src="./image/hospital_add@2x.png" alt=""><span>添加就诊卡</span>-->
+            <!--</a>-->
+            <a href="#!/hospitalizedbind" class="button search-detail">
+                <img src="./image/hospital_card@2x.png" alt=""><span>绑定住院号</span>
+            </a>
+        </div>
+        <div class="hospitalized-list" ng-if="hospitalizedlist.length > 0">
+            <div ng-repeat="i in hospitalizedlist">
+                <a ng-repeat="n in i.item" href="#!/hospitalizeddetail/{{n.shortid}}/{{n.name}}" class="hospitalized-item">
+                    <div class="item-left">
+                        <p class="name">
+                            <span>{{n.name}}</span>&ensp;
+                            <i class="status active" ng-if="n.isinpatient == 1">
+                                <span>(在院)</span>
+                            </i>
+                            <i class="status" ng-if="n.isinpatient == 0">
+                                <span>(离院)</span>
+                            </i>
+                        </p>
+                        <p class="dept">
+                            {{n.depname}}
+                        </p>
+                    </div>
+                    <div class="item-right">
+                        <span class="time">{{n.zydate}}&ensp;</span>
+                        <img src="./image/arrow_right.png" alt="">
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div ng-if="hospitalizedlist.length == 0" class="empty-tips">
+        <img src="./image/hospital_info.png" alt="">
+        <p class="p1">无可查询的住院信息</p>
+        <p class="p2">您可以通过绑定住院号来查询</p>
+        <!--<a href="#!/patientidcardlist/my" class="button add-card" ng-click="leleyStatistics({type:'icon','opt':'medicalCard','tag':'1'})">-->
+            <!--<img src="./image/hospital_add@2x.png" alt=""><span>添加就诊卡&emsp;</span>-->
+        <!--</a>-->
+        <a href="#!/hospitalizedbind" class="button search-detail">
+            <img src="./image/hospital_card@2x.png" alt=""><span>绑定住院号</span>
+        </a>
+    </div>
+</div>

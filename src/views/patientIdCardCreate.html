@@ -1,0 +1,129 @@
+<style>
+    *{margin:0;padding: 0}
+    .content{width:100% ;font-size: 0.14rem;}
+    .content h1{padding-left: 0.12rem;height: 0.32rem;line-height: 0.32rem;color: #f5a632;font-size: 0.14rem;background: #fffaf4;}
+    .content h1 img{vertical-align: middle;width: 0.14rem}
+    .content h1 span{vertical-align: middle;}
+    form{width: 100%;padding-top: 0.05rem}
+    form input{border:none;font-size: 0.14rem;}
+    form input::-webkit-input-placeholder {color:#ccc;}
+    .info-box{width: 100%;padding-left: 0.12rem;box-sizing: border-box;margin-bottom: .54rem;}
+    .info-box .form-group{border-bottom: 1px solid #ebe8e9;position: relative;line-height: 0.48rem;height: .48rem;}
+    .form-group .title{display:inline-block;width: 0.87rem;vertical-align: middle;font-size: 0.14rem;color:#666;}
+    .form-group .box-right{width: 2rem;vertical-align: middle;display: inline-block;height: inherit}
+    .form-group .box-right .mbsc-comp{color:#333;height: inherit;background: transparent;}
+    .select-record{float: right;height: 85%;}
+    .select-record img{width: .21rem; margin: .1rem;}
+    .form-group .arrow{position: absolute; right: 0.14rem; width: 0.16rem; top: 50%; margin-top: -0.09rem; opacity: 0.4;}
+    form .submit{line-height: 0.44rem; color: #fff; font-size: .18rem; background: #00A560; width: 100%; text-align: center; position: fixed; bottom: 0; left: 0;}
+</style>
+<div class="content">
+    <!--<h1><img src="./image/icon_tip.png" alt="">&ensp;<span>到医院就诊时，请务必带上身份证或户口本就诊</span></h1>-->
+    <form action="">
+        <div class="info-box">
+            <div class="form-group">
+                <span class="title">姓名：</span>
+                <div class="box-right">
+                    <input type="text" placeholder="请输入姓名" ng-model="name">
+                </div>
+                <a ng-click="leleyStatistics({type:'icon','opt':'healthArchive','tag':'9'})" href="javascript:;" class="select-record">
+                    <img src="./image/icon_recard.png" alt="">
+                </a>
+            </div>
+            <div class="form-group">
+                <span class="title">民族：</span>
+                <div class="box-right">
+                    <select name="nation" id="nation">
+                        <option ng-repeat="one in nationList" value="{{one.id}}">{{one.text}}</option>
+                    </select>
+                </div>
+                <img src="./image/arrow_right.png" alt="" class="arrow">
+            </div>
+            <!--<div class="form-group">-->
+                <!--<span class="title">证件类型：</span>-->
+                <!--<div class="box-right">-->
+                    <!--<input type="text" value="身份证" readonly class="mbsc-comp">-->
+                <!--</div>-->
+                <!--<img src="./image/arrow_right.png" alt="" class="arrow">-->
+            <!--</div>-->
+            <div class="form-group">
+                <span class="title">身份证号码：</span>
+                <div class="box-right">
+                    <input type="text" placeholder="请输入证件号码" ng-model="idcard" id="idcard" maxlength="18" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')" ng-blur="writeBirthday($event)">
+                </div>
+            </div>
+            <div class="form-group">
+                <span class="title">性别：</span>
+                <div class="box-right">
+                    <select name="sex" id="sex">
+                        <option value="男">男</option>
+                        <option value="女">女</option>
+                    </select>
+                </div>
+                <img src="./image/arrow_right.png" alt="" class="arrow">
+            </div>
+            <div class="form-group">
+                <span class="title">出生日期：</span>
+                <div class="box-right">
+                    <input type="text" placeholder="请输入出生日期" id="birthday">
+                </div>
+            </div>
+            <div class="form-group">
+                <span class="title">居住地址：</span>
+                <div class="box-right">
+                    <input type="text" placeholder="请输入居住地址" ng-model="address">
+                </div>
+            </div>
+            <div class="form-group">
+                <span class="title">手机号码：</span>
+                <div class="box-right">
+                    <input type="text" placeholder="请输入手机号码" ng-model="phone" onkeyup="value=value.replace(/\D/g,'')" onblur="value=value.replace(/\D/g,'')" maxlength="15">
+                </div>
+            </div>
+            <div class="form-group">
+                <span class="title">从事职业：</span>
+                <div class="box-right">
+                    <select name="job" id="job">
+                        <option>其他</option>
+                        <option>国家公务员</option>
+                        <option>专业技术人员</option>
+                        <option>职员</option>
+                        <option>企业管理人员</option>
+                        <option>工人</option>
+                        <option>农民</option>
+                        <option>学生</option>
+                        <option>现役军人</option>
+                        <option>自由职业者</option>
+                        <option>个体经营者</option>
+                        <option>无业人员</option>
+                        <option>退（离）休人员</option>
+                    </select>
+                </div>
+                <img src="./image/arrow_right.png" alt="" class="arrow">
+            </div>
+            <div class="form-group">
+                <span class="title">联系人：</span>
+                <div class="box-right">
+                    <input type="text" placeholder="请输入联系人姓名" ng-model="contact">
+                </div>
+            </div>
+            <div class="form-group">
+                <span class="title">与患者关系：</span>
+                <div class="box-right">
+                    <select name="relation" id="relation">
+                        <option>配偶</option>
+                        <option>子</option>
+                        <option>女</option>
+                        <option>孙子、孙女或外孙子、外孙女</option>
+                        <option>父母</option>
+                        <option>祖父母或外祖父母</option>
+                        <option>兄、弟、姐、妹</option>
+                        <option>其他</option>
+                    </select>
+                </div>
+                <img src="./image/arrow_right.png" alt="" class="arrow">
+            </div>
+        </div>
+        <a href="javascript:;" class="submit" id="submitInfo" ng-click="submitInfo()">提交</a>
+    </form>
+</div>

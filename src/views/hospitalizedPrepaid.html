@@ -1,0 +1,31 @@
+<style>
+    body{background-color: #f6f6f6}
+    .out-box{font-size: 12px;width: 100%;height: auto}
+    .header{height: .48rem;background-color: #f7f7f7;line-height: .48rem;position: relative}
+    .header span:first-child{font-size: .18rem;color: #333333;margin-left: .2rem;}
+    .header span:last-child{position:absolute;font-size: .14rem;color: #666666;right: .2rem}
+    .prepaid-box{width: 100%;background-color: white;text-align: center}
+    .prepaid-box p:first-child{padding: .26rem 0 .12rem 0;color: #999999;font-size: .14rem}
+    .prepaid-box p:nth-of-type(2){color: #00A560;font-size: .26rem;}
+    .prepaid-box input{margin: .26rem 0;height: .44rem;width: 2.46rem;border: 1px solid rgba(1,1,1,.1);border-radius: 3px;text-align: center;
+                color: #333333;font-size: .18rem;padding: 0 .1rem;outline: none;}
+    .prepaid-box input::-webkit-input-placeholder{font-size: .14rem;color: #A0A0A0}
+    .query-btn{width: 100%;text-align: center;margin-top: .4rem}
+    .query-btn a{width: 3.35rem;line-height: .44rem;border-radius: 4px;font-size: .18rem;color: #fff;display: inline-block;background: #d4d4d4;}
+    .query-btn a.active{background: #00a560;}
+
+</style>
+<div class="out-box">
+    <div class="header">
+        <span>{{zypatdetail.name}}</span>
+        <span>住院号：{{zypatdetail.inpatientid}}</span>
+    </div>
+    <div class="prepaid-box">
+        <p>当前预交金余额（元）</p>
+        <p>{{zypatdetail.ye || 0}}</p>
+        <input ng-model="price" type="text" placeholder="请输入预交金额，单笔不超过5万" onkeyup="value=value.replace(/[^\d\.]/g,'')" onblur="value=value.replace(/[^\d\.]/g,'')" maxlength="5">
+    </div>
+    <div class="query-btn">
+        <a href="javascript:;" ng-class="{'active':price}" ng-click="submitPrepaid()">确定</a>
+    </div>
+</div>

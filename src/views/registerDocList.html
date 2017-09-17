@@ -1,0 +1,28 @@
+<style>
+    .out-box{font-size: 12px;width: 100%;height: auto}
+    .header{padding:.12rem 0 ;border-bottom: 1px solid rgba(1,1,1,.05);position: relative;overflow: hidden;color: #727272;}
+    .header div{float: left;text-align: center;font-size: .16rem;width: calc(50% - 1px);}
+    .left{border-right: 1px solid #b6b6b6;}
+    .header div span{padding-bottom: .09rem;}
+    .active{border-bottom: 3px solid #00A560;color: #00A560;}
+    .doc-box{height: auto;position: relative;padding-left: .1rem}
+    .time-box{height: .48rem;width: 100%;overflow: auto;font-size: 0;border-bottom: 1px solid rgba(1,1,1,.05);display: none}
+    .time-box .inner-box{height: 100%;width: 999px;overflow: auto}
+    .time-box span{display: inline-block;height: 100%;width: .57rem;background-color: white;text-align: center;color: #666666;font-size: .12rem}
+    .time-box span:first-child{background-color: #00A560;color: white}
+    .time-box span p:first-child{font-size: .14rem;margin-top: .05rem;}
+</style>
+<div class="out-box">
+    <div class="header">
+        <div class="left">
+            <span class="active">按专家选择</span>
+        </div>
+        <div class="right">
+            <span>按时间选择</span>
+        </div>
+    </div>
+    <div class="time-box">
+        <div class="inner-box"></div>
+    </div>
+    <div class="doc-box"></div>
+</div>

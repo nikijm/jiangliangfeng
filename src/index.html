@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN" ng-app="myApp" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no"/>
+  <title>.</title>
+  <!-- build:css app.min.css -->
+  <link rel="stylesheet" href="plugin/layer_mobile/need/layer.css">
+  <link rel="stylesheet" href="plugin/mobiscroll.jquery/css/mobiscroll.jquery.min.css">
+  <link rel="stylesheet" href="plugin/swiper/swiper.min.css">
+  <link rel="stylesheet" href="plugin/dropload/dropload.css">
+  <link rel="stylesheet" href="app.css">
+  <!-- endbuild -->
+</head>
+<body>
+  <div class="outer {{pageClass}}" ng-controller="MainController">
+    <div class="weui-progress">
+      <div class="weui-progress__bar">
+        <div class="weui-progress__inner-bar"></div>
+      </div>
+    </div>
+    <div class="top-download-box {{downloadBtnClass}}">
+      <div class="inner">
+        <a ng-click="downUrl()">下载乐乐医app，查看更多就诊服务</a>
+        <i></i>
+      </div>
+    </div>
+    <div ui-view></div>
+  </div>
+  <!-- build:js app.min.js -->
+  <script src="plugin/angular/angular.min.js"></script>
+  <script src="plugin/angular-ui-router/angular-ui-router.min.js"></script>
+  <script src="plugin/jQuery/jquery.min.js"></script>
+  <script src="plugin/layer_mobile/layer.js"></script>
+  <script src="plugin/swiper/swiper.min.js"></script>
+  <script src="plugin/mobiscroll.jquery/js/mobiscroll.jquery.min.js"></script>
+  <script src="plugin/dropload/dropload.min.js"></script>
+  <script src="views/nation.js"></script>
+  <script src="app.js"></script>
+  <script src="common.js"></script>
+  <script src="views/addressDataNew.js"></script>
+
+  <script src="components/directive-doctorList.js"></script>
+  <script src="components/directive-registerDoctorList.js"></script>
+  <script src="views/home.js"></script>
+  <script src="views/onlineClinic.js"></script>
+  <script src="views/deptList.js"></script>
+  <script src="views/hosIntroduce.js"></script>
+  <script src="views/deptIntroduce.js"></script>
+  <script src="views/docList.js"></script>
+  <script src="views/docDetail.js"></script>
+  <script src="views/hospitalizedList.js"></script>
+  <script src="views/hospitalizedBind.js"></script>
+  <script src="views/hospitalizedDetail.js"></script>
+  <script src="views/hospitalizedOrder.js"></script>
+  <script src="views/hospitalizedPrepaid.js"></script>
+  <script src="views/registerDocList.js"></script>
+  <script src="views/registerDeptList.js"></script>
+  <script src="views/reportList.js"></script>
+  <script src="views/reportDetail.js"></script>
+  <script src="views/reportOfCT.js"></script>
+  <script src="views/reportofTrasonic.js"></script>
+  <script src="views/payList.js"></script>
+  <script src="views/payDetails.js"></script>
+  <script src="views/patientIdCardList.js"></script>
+  <script src="views/patientIdCardBind.js"></script>
+  <script src="views/patientIdCardCreate.js"></script>
+  <script src="views/search.js"></script>
+  <script src="views/addressAdd.js"></script>
+  <script src="views/addressData.js"></script>
+  <script src="views/addressList.js"></script>
+  <script src="views/addressSelect.js"></script>
+  <script src="views/expressDetail.js"></script>
+  <script src="views/sendList.js"></script>
+  <script src="views/sendDetail.js"></script>
+  <script src="views/sendExplain.js"></script>
+  <script src="views/sendQuery.js"></script>
+  <script src="views/sendSelect.js"></script>
+  <!-- endbuild -->
+</body>
+</html>

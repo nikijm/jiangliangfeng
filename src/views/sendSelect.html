@@ -1,0 +1,44 @@
+<style>
+    body{background-color: #f2f2f2}
+    .out-box{font-size: 12px}
+    .select-title{height: .44rem;background-color: #fff;padding-left: .12rem;font-size: .14rem;color: #666;line-height: .44rem;}
+
+    .report-box{background-color: #fff;margin-top: .12rem}
+    .report-list{padding: .14rem .12rem;border-bottom: 1px solid #e9e9e9;position: relative}
+    .report-name{font-size: .14rem;color: #333;margin-bottom: .06rem}
+    .report-info{font-size: .12rem;color: #999}
+    .select-box{position: absolute;right: .12rem;top: .25rem}
+    .select-box input{opacity: 0}
+    .select-box .click{position: absolute;height: .16rem;width: .16rem;border-radius: .16rem;left: 0;top: 0;border: 1px solid #ccc;}
+    .select-box>input:checked+label{background-color: #00A560;border: none}
+    .select-box>input:checked+label:after{content: '';height: .1rem;width: .05rem;border-right: 1px solid #fff;border-bottom: 1px solid #fff;transform: rotate(45deg);
+            position: absolute;left: .05rem;top: .01rem;
+    }
+
+    .sendbtn{width: 100%;text-align: center;margin-top: .1rem}
+    .btn{border: none;outline: none;width: 3.35rem;height: .44rem;background-color: #CCCCCC;font-size: .18rem;color: #fff;border-radius: 4px}
+</style>
+<div class="out-box">
+    <div class="select-title">
+        选择需要寄送的报告
+    </div>
+    <div class="report-box">
+        <div class="report-list" ng-repeat="item in reportList" data-detail="{{item}}">
+            <p class="report-name">{{(item.examName || "&ensp;")}}</p>
+            <p class="report-info">{{(item.name || "&ensp;")}}  {{item.reportDate}} </p>
+            <div class="select-box" >
+                <input type="radio" id="radio1" ><label for="radio1" class="click"  ng-click="selectBox($event)"></label>
+            </div>
+        </div>
+        <!-- <div class="report-list">
+            <p class="report-name">全自动泌尿沉淀定量分析（小便常规）</p>
+            <p class="report-info">廖丹阳 2017-12-12 10:11:34</p>
+            <div class="select-box">
+                <input type="radio" id="radio2"><label for="radio2" class="click" ng-click="$event.preventDefault()"></label>
+            </div>
+        </div> -->
+    </div>
+    <div class='sendbtn'>
+        <button  class="btn" ng-click="commit()" disabled="true">确认寄送</button>
+    </div>
+</div>
